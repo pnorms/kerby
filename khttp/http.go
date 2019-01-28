@@ -72,7 +72,7 @@ func (t *Transport) RoundTrip(req *http.Request) (*http.Response, error) {
 	tr := t.Next
 	if tr == nil {
 		tr = http.DefaultTransport
-		tr.DefaultTransport.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
+		tr.(*http.Transport).TLSClientConfig = &tls.Config{InsecureSkipVerify: true}
 		if tr == nil {
 			return nil, errors.New("khttp: no Next transport or DefaultTransport")
 		}
